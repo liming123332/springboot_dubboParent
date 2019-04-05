@@ -1,0 +1,12 @@
+dubbo:
+  application:
+    name: server-consumer
+  registry:
+    address: zookeeper://192.168.126.22:2181
+
+server:
+  port: 8080
+
+spring:
+  thymeleaf:
+    cache: false
