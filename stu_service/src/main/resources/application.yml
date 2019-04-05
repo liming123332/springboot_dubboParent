@@ -8,6 +8,6 @@ dubbo:
   application:
     name: server-provider
   registry:
-    address: zookeeper://192.168.126.22:2181
+    address: zookeeper://192.168.202.128:2181
 server:
   port: 8081

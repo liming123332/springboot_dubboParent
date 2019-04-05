@@ -17,4 +17,14 @@ public class MyClassServiceImpl implements IMyClassService {
     public List<MyClass> getList() {
         return myClassMapper.selectList(null);
     }
+
+    @Override
+    public void add(MyClass myClass) {
+        myClassMapper.insert(myClass);
+    }
+
+    @Override
+    public MyClass selectById(int cid) {
+        return myClassMapper.selectById(cid);
+    }
 }

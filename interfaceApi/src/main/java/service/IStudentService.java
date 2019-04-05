@@ -9,4 +9,12 @@ public interface IStudentService {
     public List<Student> getList();
 
     public List<StudentVO> getStuAndClassList();
+
+    void add(Student student);
+
+    StudentVO selectById(Integer id);
+
+    void updateById(Student student);
+
+    void delete(Integer id);
 }

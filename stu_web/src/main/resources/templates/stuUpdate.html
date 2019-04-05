@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>修改学生</h1>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form class="form-horizontal" action="/student/update" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="hidden" name="id" th:value="${stu.id}">
+                        <input type="text" name="name" class="form-control" th:value="${stu.name}" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">年龄</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="age" class="form-control" th:value="${stu.age}" placeholder="年龄">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <select class="form-control" name="cid">
+                            <option th:each="myclass:${myClassList}" th:selected="${myclass.id eq stu.cid}" th:value="${myclass.id}" th:text="${myclass.cname}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" class="btn btn-default" value="添加">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class StudentServiceImpl implements IStudentService {
+public class StudentServiceImpl implements IStudentService{
     @Autowired
     private StudentMapper studentMapper;
     
@@ -43,5 +43,30 @@ public class StudentServiceImpl implements IStudentService {
             }
         }
         return studentVOs;
+    }
+
+    @Override
+    public void add(Student student) {
+        studentMapper.insert(student);
+    }
+
+    @Override
+    public StudentVO selectById(Integer id) {
+        Student student = studentMapper.selectById(id);
+        final MyClass myClass = myClassService.selectById(student.getCid());
+        StudentVO studentVO=new StudentVO();
+        BeanUtils.copyProperties(student, studentVO);
+        studentVO.setMyClass(myClass);
+        return studentVO;
+    }
+
+    @Override
+    public void updateById(Student student) {
+        studentMapper.updateById(student);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        studentMapper.deleteById(id);
     }
 }
