@@ -4,10 +4,12 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import entity.MyClass;
 import entity.Student;
 import entity.StudentVO;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.IMyClassService;
 import service.IStudentService;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class StudentController {
 
     @Reference
+    @Qualifier("StudentCacheServiceImpl")
     private IStudentService studentService;
 
     @Reference
@@ -28,6 +31,13 @@ public class StudentController {
         List<StudentVO> students=studentService.getStuAndClassList();
         model.addAttribute("students",students);
         return "stuList";
+    }
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public List<Student> list(){
+        List<Student> students=studentService.getList();
+        return students;
     }
 
     @RequestMapping("/toAdd")

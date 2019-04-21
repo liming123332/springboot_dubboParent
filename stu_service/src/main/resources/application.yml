@@ -4,10 +4,27 @@ spring:
     url: jdbc:mysql:///studb
     username: root
     password: admin
+  redis:
+    host: 192.168.126.129
+   # password: root
+    sentinel:
+      nodes:
+        - 192.168.126.4:26379
+        - 192.168.126.4:26380
+        - 192.168.126.4:26381
+      master: mymaster
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+
 dubbo:
   application:
     name: server-provider
   registry:
-    address: zookeeper://192.168.202.128:2181
-server:
-  port: 8081
+    address: nacos://127.0.0.1:8848
+  #    address: zookeeper://192.168.126.22:2181
+  protocol:
+    port: 20882
+  consumer:
+    check: false
